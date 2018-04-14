@@ -23,13 +23,26 @@ namespace EWS.Controllers
             { RR_score = 1; }
             else { RR_score = 0; }
 
-
             int OxySat = ewsmodel.OxySat;
+            
             int OxySat_score = 1;
+            if (OxySat < 85) { OxySat_score = 3; }
+            else if(OxySat>=85 && OxySat < 90) { OxySat_score = 2; }
+            else if (OxySat >= 90 && OxySat < 93) { OxySat_score = 1; }
+            else { OxySat_score = 0; }
+
             var SuppOxy = ewsmodel.SuppOxy;
-            int SuppOxy_score = 2;
-            var Temp = ewsmodel.Temp;
+            int SuppOxy_score = 0;
+
+            float Temp = ewsmodel.Temp;
             int Temp_score = 0;
+            if(Temp > 38.9) { Temp_score = 2; }
+            else if(Temp>=38 && Temp <= 38.9) { Temp_score = 1; }
+            else if (Temp >= 36 && Temp <= 37.9) { Temp_score = 0; }
+            else if (Temp >= 35 && Temp <= 35.9) { Temp_score = 1; }
+            else if (Temp >= 34 && Temp <= 34.9) { Temp_score = 2; }
+            else { Temp_score = 3; }
+
             int SysBP = ewsmodel.SysBP;
             int SysBP_score = 1;
             int HR = ewsmodel.HR;
@@ -38,10 +51,11 @@ namespace EWS.Controllers
             int AVPU_score = 0;
             int EWS = RR_score + OxySat_score + SuppOxy_score + Temp_score + SysBP_score + HR_score + AVPU_score;
 
-            ;
+            
             ViewBag.RR = RR;
             ViewBag.RR_score = RR_score;
             ViewBag.OxySat = OxySat;
+            ViewBag.Oxysat_score = OxySat_score;
             ViewBag.SuppOxy = SuppOxy;
             ViewBag.Temp = Temp;
             ViewBag.SysBP = SysBP;

@@ -10,7 +10,7 @@ namespace EWS.Models
         public int RR { get; set; }
         public int OxySat { get; set; }
         public bool SuppOxy { get; set; }
-        public decimal Temp { get; set; }
+        public float Temp { get; set; }
         public int SysBP { get; set; }
         public int HR { get; set; }
         public string AVPU { get; set; }
