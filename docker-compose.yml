@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  ews:
+    image: ews
+    build:
+      context: .
+      dockerfile: EWS/Dockerfile
