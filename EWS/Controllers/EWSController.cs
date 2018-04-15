@@ -24,7 +24,6 @@ namespace EWS.Controllers
             else { RR_score = 0; }
 
             int OxySat = ewsmodel.OxySat;
-            
             int OxySat_score = 1;
             if (OxySat < 85) { OxySat_score = 3; }
             else if(OxySat>=85 && OxySat < 90) { OxySat_score = 2; }
@@ -45,11 +44,34 @@ namespace EWS.Controllers
 
             int SysBP = ewsmodel.SysBP;
             int SysBP_score = 1;
+            if (SysBP > 199) { SysBP_score = 2; }
+            else if(SysBP>=100 && SysBP <= 199) { SysBP_score = 0; }
+            else if (SysBP >= 80 && SysBP <= 99) { SysBP_score = 1; }
+            else if (SysBP >= 70 && SysBP <= 79) { SysBP_score = 2; }
+            else { SysBP_score = 3; }
+
             int HR = ewsmodel.HR;
             int HR_score = 1;
+            if (HR > 129) { HR_score = 3; }
+            else if(HR>=110 && HR <= 129) { HR_score = 2; }
+            else if (HR >= 100 && HR <= 109) { HR_score = 1; }
+            else if (HR >= 50 && HR <= 99) { HR_score = 0; }
+            else if (HR >= 40 && HR <= 49) { HR_score = 1; }
+            else if (HR >= 30 && HR <= 39) { HR_score = 2; }
+            else { HR_score = 3; }
+
             var AVPU = ewsmodel.AVPU;
             int AVPU_score = 0;
+            if (AVPU == "A") { AVPU_score = 0; }
+            else if (AVPU == "V") { AVPU_score = 1; }
+            else if (AVPU == "P") { AVPU_score = 2; }
+            else if (AVPU == "U") { AVPU_score = 3; }
+
             int EWS = RR_score + OxySat_score + SuppOxy_score + Temp_score + SysBP_score + HR_score + AVPU_score;
+
+            var EWS_risk = "Normal Risk";
+            if (EWS >= 5) { EWS_risk = "High Risk"; }
+           
 
             
             ViewBag.RR = RR;
@@ -58,10 +80,15 @@ namespace EWS.Controllers
             ViewBag.Oxysat_score = OxySat_score;
             ViewBag.SuppOxy = SuppOxy;
             ViewBag.Temp = Temp;
+            ViewBag.Temp_score = Temp_score;
             ViewBag.SysBP = SysBP;
+            ViewBag.SysBP_score = SysBP_score;
             ViewBag.HR = HR;
+            ViewBag.HR_score = HR_score;
             ViewBag.AVPU = AVPU;
+            ViewBag.AVPU_score = AVPU_score;
             ViewBag.ews = EWS;
+            ViewBag.ews_risk = EWS_risk;
 
             return View();
         }
