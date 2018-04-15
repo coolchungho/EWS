@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace EWS.Models
 {
     public class EWSModel
     {
+        public Guid EWS_id { get; set; }
+        public string ChartNo { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime RecordDateTime { get; set; }
         public int RR { get; set; }
         public int OxySat { get; set; }
         public bool SuppOxy { get; set; }
