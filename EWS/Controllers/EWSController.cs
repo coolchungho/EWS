@@ -13,6 +13,7 @@ namespace EWS.Controllers
         // GET: EWS
         public ActionResult Index([FromForm] EWSModel ewsmodel)
         {
+
             int RR = ewsmodel.RR;
             int RR_score = 0;
             if (RR < 9 || RR > 35)
@@ -71,9 +72,9 @@ namespace EWS.Controllers
 
             var EWS_risk = "Normal Risk";
             if (EWS >= 5) { EWS_risk = "High Risk"; }
-           
 
-            
+
+            ViewBag.Date = DateTime.Now;
             ViewBag.RR = RR;
             ViewBag.RR_score = RR_score;
             ViewBag.OxySat = OxySat;
