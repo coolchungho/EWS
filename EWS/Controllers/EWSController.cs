@@ -13,6 +13,7 @@ namespace EWS.Controllers
         // GET: EWS
         public ActionResult Index([FromForm] EWSModel ewsmodel)
         {
+            // RR: respiratory rate
 
             int RR = ewsmodel.RR;
             int RR_score = 0;
